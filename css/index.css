@@ -1,0 +1,22 @@
+.controls {
+	display: inline-flex;
+}
+
+#start, 
+#pause {
+	border: solid black 1px;
+	margin: 4px;
+	padding: 2px;
+	width: 100px;
+}
+
+ul, li {
+	list-style: none;
+	display: inline-block;
+}
+
+li {
+	border: solid black 1px;
+	margin: 4px;
+	padding: 2px;
+}
