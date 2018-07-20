@@ -31,13 +31,24 @@
 // document.addEventListener('dblclick', stop)
 
 
-// const drumSequencer = [true, false, false, true, true, false, false, false];
 
-const drumSequencer = [ false, false, false, false, false, false, false, false];
+const drumSequencer = [false, false, false, false, false, false, false, false];
 
-function toggle() {
-  drumSequencer[0] = !drumSequencer[0];
-  console.log(drumSequencer);
+
+// User selects which sound to play
+
+let djembeOne = document.getElementsByClassName("a");
+
+function tabActive() {
+    let key = this.getAttribute("data-key");
+    drumSequencer[key] = !drumSequencer[key];
+    console.log(key);
+    document.getElementById("a" +key).classList.toggle("isActive");
+}
+
+//adds event listener to each element with className
+for (let i = 0; i< djembeOne.length; i++) {
+    djembeOne[i].addEventListener("click", tabActive)
 }
 
 const audio = document.getElementById('soundOne');
@@ -45,7 +56,7 @@ let stopped = false;
 let counter = 0;
 
 
-function start(){
+function start() {
    stopped = false;
    playAudio();
 };
@@ -67,10 +78,12 @@ function playAudio() {
         if (stopped == false) {
             playAudio();
         }
-    }, 1000);}
+    }, 1000);
+    document.getElementById("a" +counter).classList.add("counterPos");
+    setTimeout(document.getElementById("a" +counter).classList.remove("counterPos"), 1000);
+};
 
 
-//doesnt stop loop immediately
 function pause() {
     audio.pause();
     audio.currentTime = 0;
@@ -80,11 +93,15 @@ function pause() {
 
 console.log(drumSequencer);
 
-//toggle array elements
-document.getElementById("a1").addEventListener('click', toggle);
+//see counter
+
+
+//Event Listeners
+
 
 //starts audio
-document.addEventListener('click', start)
+document.getElementById("start").addEventListener('click', start)
 
 //stops audio
-document.addEventListener('dblclick', pause)
+document.getElementById("pause").addEventListener('click', pause)
+

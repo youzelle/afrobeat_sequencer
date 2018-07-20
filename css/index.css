@@ -20,3 +20,11 @@ li {
 	margin: 4px;
 	padding: 2px;
 }
+
+.isActive {
+	background-color: red;
+}
+
+.counterPos {
+    transform: scale(1.2);
+}
