@@ -22,9 +22,9 @@ li {
 }
 
 .isActive {
-	background-color: red;
+	transform: scale(1.2);
 }
 
 .counterPos {
-    transform: scale(1.2);
+    border: solid red 2px;
 }
