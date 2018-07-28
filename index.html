@@ -14,8 +14,8 @@
 
       <label for="bpmControl">BPM: </label> 
       <input type="range" id="bpm" name="bpmInput"
-             min="60" max="360" step="5" oninput="bpmChange(this.value)"/>
-      <output name="bpmOutput" id="bpmValue">210</output></br>
+             min="30" max="60" step="5" oninput="bpmChange(this.value)"/>
+      <output name="bpmOutput" id="bpmValue"></output></br>
       <!-- Make these radio buttons? -->
       <div id="start"><a href="#">Start</a></div> 
       <div id="pause"><a href="#">Pause</a></div>
@@ -32,7 +32,7 @@
       <li id="a4" data-row="0" data-col="4"><a href="#" >A4</a></li>
       <li id="a5" data-row="0" data-col="5"><a href="#" >A5</a></li>
       <li id="a6" data-row="0" data-col="6"><a href="#" >A6</a></li>
-      <li id="a7" data-row="0" data-col="8"><a href="#" >A7</a></li>
+      <li id="a7" data-row="0" data-col="7"><a href="#" >A7</a></li>
     </ul>
     <br/>
 
@@ -50,10 +50,10 @@
     </ul>
 
     <!-- audio -->
-
-    <audio id="0" data-row="0" src="./audio/percussion11.wav" >
+    <!--Need to fix sound levels and time of sounds  -->
+    <audio id="audio0" preload="auto" src="./audio/percussion11.wav" >
     </audio>
-    <audio id="1" data-row="1" src="./audio/bell01.wav">
+    <audio id="audio1" preload="auto" src="./audio/cowbell01.wav">
     </audio>
 
     

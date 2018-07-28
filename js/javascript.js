@@ -3,21 +3,19 @@ const two = [false, false, false, false, false, false, false, false];
 
 const beatsMatrix = [one, two];
 
-//Change to store sounds in JS & use data attribute to link to arrays
-// const audioOne = document.getElementById('soundOne');
-// const audioTwo = document.getElementById('soundTwo');
-
 let counter = 0;
 let row = 0;
 let col = 0;
 let playing;
-const numberOfBeats = one.length;
-const numberOfInstr = beatsMatrix.length;
+const numberOfBeats = 8;
+const numberOfInstr = 4;
 
 const audio = [];
 for (let j = 0; j < numberOfInstr; j++) {
-    audio.push.(document.getElementByTagName("audio")[j]);
+    audio.push(document.getElementById("audio" + j));
 }
+
+console.log(audio);
 
 //store DOM elements in JS array
 const soundLinks = [[],[]];
@@ -26,9 +24,6 @@ for (let i = 0; i < numberOfBeats; i++) {
     soundLinks[0].push(document.getElementById("a" + i));
     soundLinks[1].push(document.getElementById("b" + i));
 }
-
-console.log("beatsMatrixDOM: " + soundLinks);
-
 
 // User selects which sound to play
 function tabActive() {
@@ -74,7 +69,8 @@ function playAudio() {
     //match data key of row to data key of sound
     for (row = 0; row < numberOfInstr; row++) {
         if (beatsMatrix[row][counter] === true) { 
-           (document.getElementById(row)).play();
+           audio[row].currentTime = 0;
+           audio[row].play();
         }
     }
     let timing = (Date.now() - begin);
@@ -98,4 +94,3 @@ document.getElementById("start").addEventListener('click', start)
 document.getElementById("pause").addEventListener('click', pause)
 //bpm sets time interval
 document.getElementById("bpm").addEventListener('input', timeInterval)
-
