@@ -1,7 +1,9 @@
 const one = [false, false, false, false, false, false, false, false];
 const two = [false, false, false, false, false, false, false, false];
+const three = [false, false, false, false, false, false, false, false];
+const four = [false, false, false, false, false, false, false, false];
 
-const beatsMatrix = [one, two];
+const beatsMatrix = [one, two, three, four];
 
 let counter = 0;
 let row = 0;
@@ -15,14 +17,14 @@ for (let j = 0; j < numberOfInstr; j++) {
     audio.push(document.getElementById("audio" + j));
 }
 
-console.log(audio);
-
 //store DOM elements in JS array
-const soundLinks = [[],[]];
+const soundLinks = [[],[],[],[]];
 //index here matches index in music arrays, use instead of data key
 for (let i = 0; i < numberOfBeats; i++) {
     soundLinks[0].push(document.getElementById("a" + i));
     soundLinks[1].push(document.getElementById("b" + i));
+    soundLinks[2].push(document.getElementById("c" + i));
+    soundLinks[3].push(document.getElementById("d" + i))
 }
 
 // User selects which sound to play
@@ -85,6 +87,8 @@ function playAudio() {
 
 function pause() {
     clearInterval(playing);
+    document.getElementById("start").classList.remove("isActive");
+    document.getElementById("pause").classList.add("isActive");
 };
 
 //Event Listeners
