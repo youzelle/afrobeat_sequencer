@@ -20,11 +20,20 @@ for (let j = 0; j < numberOfInstr; j++) {
 //store DOM elements in JS array
 const soundLinks = [[],[],[],[]];
 //index here matches index in music arrays, use instead of data key
-for (let i = 0; i < numberOfBeats; i++) {
-    soundLinks[0].push(document.getElementById("a" + i));
-    soundLinks[1].push(document.getElementById("b" + i));
-    soundLinks[2].push(document.getElementById("c" + i));
-    soundLinks[3].push(document.getElementById("d" + i))
+// for (let i = 0; i < numberOfBeats; i++) {
+//     soundLinks[0].push(document.getElementById("a" + i));
+//     soundLinks[1].push(document.getElementById("b" + i));
+//     soundLinks[2].push(document.getElementById("c" + i));
+//     soundLinks[3].push(document.getElementById("d" + i))
+// }
+const char = ['a', 'b', 'c', 'd'];
+
+for (let s = 0; s < soundLinks.length; s++) {
+    for ( let t = 0; t < char.length; t++ ) {
+        for ( let i = 0; i<numberOfBeats; i++) {
+            soundLinks[s].push(document.getElementById(char[t] + i))
+        }
+    }
 }
 
 // User selects which sound to play
@@ -52,13 +61,14 @@ function timeInterval() {
 
 function start() {
     playing = setInterval(playAudio, timeInterval())
+    document.getElementById("start").classList.add("isActive");
+    document.getElementById("pause").classList.remove("isActive");
 }
 
-const begin = Date.now();
 
 function playAudio() {
     for (row = 0; row < numberOfInstr; row++) {
-        if (counter > -1) 
+        if (counter >= 0) 
             soundLinks[row][counter].classList.add('counterPos');
     }
     for (row = 0; row < numberOfInstr; row++) {
@@ -70,15 +80,12 @@ function playAudio() {
     }
     //match data key of row to data key of sound
     for (row = 0; row < numberOfInstr; row++) {
-        if (beatsMatrix[row][counter] === true) { 
+        if (beatsMatrix[row][counter]) { 
            audio[row].currentTime = 0;
            audio[row].play();
         }
     }
-    let timing = (Date.now() - begin);
-    console.log(counter +':'+ timing);
     counter++;
-    console.log("inter: " +timeInterval());
     //loops through array
     if (counter === 8) {
         counter = 0;
