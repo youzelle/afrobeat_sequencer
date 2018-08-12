@@ -19,22 +19,22 @@ for (let j = 0; j < numberOfInstr; j++) {
 
 //store DOM elements in JS array
 const soundLinks = [[],[],[],[]];
-//index here matches index in music arrays, use instead of data key
-// for (let i = 0; i < numberOfBeats; i++) {
-//     soundLinks[0].push(document.getElementById("a" + i));
-//     soundLinks[1].push(document.getElementById("b" + i));
-//     soundLinks[2].push(document.getElementById("c" + i));
-//     soundLinks[3].push(document.getElementById("d" + i))
-// }
-const char = ['a', 'b', 'c', 'd'];
-
-for (let s = 0; s < soundLinks.length; s++) {
-    for ( let t = 0; t < char.length; t++ ) {
-        for ( let i = 0; i<numberOfBeats; i++) {
-            soundLinks[s].push(document.getElementById(char[t] + i))
-        }
-    }
+// index here matches index in music arrays, use instead of data key
+for (let i = 0; i < numberOfBeats; i++) {
+    soundLinks[0].push(document.getElementById("a" + i));
+    soundLinks[1].push(document.getElementById("b" + i));
+    soundLinks[2].push(document.getElementById("c" + i));
+    soundLinks[3].push(document.getElementById("d" + i))
 }
+// const char = ['a', 'b', 'c', 'd'];
+
+// for (let s = 0; s < soundLinks.length; s++) {
+//     for ( let t = 0; t < char.length; t++ ) {
+//         for ( let i = 0; i<numberOfBeats; i++) {
+//             soundLinks[s].push(document.getElementById(char[t] + i))
+//         }
+//     }
+// };
 
 // User selects which sound to play
 function tabActive() {
@@ -68,7 +68,7 @@ function start() {
 
 function playAudio() {
     for (row = 0; row < numberOfInstr; row++) {
-        if (counter >= 0) 
+        if (counter > -1) 
             soundLinks[row][counter].classList.add('counterPos');
     }
     for (row = 0; row < numberOfInstr; row++) {
@@ -90,13 +90,13 @@ function playAudio() {
     if (counter === 8) {
         counter = 0;
     }
-};
+}
 
 function pause() {
     clearInterval(playing);
     document.getElementById("start").classList.remove("isActive");
     document.getElementById("pause").classList.add("isActive");
-};
+}
 
 //Event Listeners
 //starts audio
