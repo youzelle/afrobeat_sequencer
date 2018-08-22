@@ -1,9 +1,13 @@
+window.addEventListener('load', function () {
+//your code right here;
+
 const one = [false, false, false, false, false, false, false, false];
 const two = [false, false, false, false, false, false, false, false];
 const three = [false, false, false, false, false, false, false, false];
 const four = [false, false, false, false, false, false, false, false];
 
 const beatsMatrix = [one, two, three, four];
+console.log(beatsMatrix);
 
 let counter = 0;
 let row = 0;
@@ -12,10 +16,14 @@ let playing;
 const numberOfBeats = 8;
 const numberOfInstr = 4;
 
+console.log(numberOfBeats)
+
 const audio = [];
 for (let j = 0; j < numberOfInstr; j++) {
+    console.log(document.getElementById('audio0'))
     audio.push(document.getElementById("audio" + j));
 }
+console.log(audio)
 
 //store DOM elements in JS array
 const soundLinks = [[],[],[],[]];
@@ -36,17 +44,19 @@ for (let i = 0; i < numberOfBeats; i++) {
 //     }
 // };
 
+
 // User selects which sound to play
 function tabActive() {
     row = this.getAttribute('data-row');
     col = this.getAttribute('data-col');
     beatsMatrix[row][col] = !beatsMatrix[row][col];
     soundLinks[row][col].classList.toggle('isActive');
-}
+};
 
 //adds event listener to each element with className
-for (row = 0; row < numberOfInstr; row++) {
-    soundLinks[row].forEach(element => element.addEventListener('click', tabActive));
+for (let r = 0; r < numberOfInstr; r++) {
+    console.log(soundLinks);
+    soundLinks[r].forEach(element => element.addEventListener('click', tabActive));
 }
 
 //uses input from slider to update output tag value
@@ -105,3 +115,5 @@ document.getElementById("start").addEventListener('click', start)
 document.getElementById("pause").addEventListener('click', pause)
 //bpm sets time interval
 document.getElementById("bpm").addEventListener('input', timeInterval)
+
+}, false);

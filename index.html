@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Rock+Salt" rel="stylesheet">
@@ -10,7 +11,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/normalize.css">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
-  	<title>Kiki & Lola | Learn About The Drums</title>
+    <title>Kiki & Lola | Learn About The Drums</title>
   </head>
 
   <body class='container'>
@@ -20,94 +21,41 @@
 
     </header>
 
-    <div class="klIntro">
-      <p>Itroduction and images of kiki and Lola. Animation first and then icons appear to explain</p>
-      <img src="./css/svg/kikiOne.svg" alt='An image of a young boy' id='kiki'>
-      <p class="speech kiki"> Hello, I'm Kiki.</p>
-      <p class="speech lola"> Hello, I'm Lola.</p>
-      <img src="./css/svg/lolaOne.svg" alt="An image of a young girl" id='lola'>
-    </div>
-
-    <div class='musicMachine'>
-      <fieldset class="audioControls">
-        <legend>Audio Controls</legend>
-
-        <label for="bpmControl">BPM: </label> 
-        <input type="range" id="bpm" name="bpmInput"
-               min="30" max="90" step="5" oninput="bpmChange(this.value)"/>
-        <output name="bpmOutput" id="bpmValue"></output></br>
-        <ul class='crlButton'>
-          <li id="pause"><a href="#"><i class="far fa-pause-circle"></i></a> </li>
-          <li id="start"><a href="#"><i class="far fa-play-circle"></i></a></li> 
-          <li id='clear'><a href='#'><i class="far fa-stop-circle"></i></a></li>
-        </ul>
-
-      </fieldset>
-      <div class='instruments'>
-      <!-- Djember Drum A -->
-        <ul id="djembeOne">
-          <li><i class="fp flaticon-maracas"></i></li>
-          <li id="a0" data-row="0" data-col="0"><a href="#" >A0</a></li>
-          <li id="a1" data-row="0" data-col="1"><a href="#" >A1</a></li>
-          <li id="a2" data-row="0" data-col="2"><a href="#" >A2</a></li>
-          <li id="a3" data-row="0" data-col="3"><a href="#" >A3</a></li>
-          <li id="a4" data-row="0" data-col="4"><a href="#" >A4</a></li>
-          <li id="a5" data-row="0" data-col="5"><a href="#" >A5</a></li>
-          <li id="a6" data-row="0" data-col="6"><a href="#" >A6</a></li>
-          <li id="a7" data-row="0" data-col="7"><a href="#" >A7</a></li>
-        </ul>
-        <br/>
-      <!-- Bell One -->     
-        <ul id="bellOne">
-          <li><i class="fp flaticon-drum"></i></li>
-          <li id="b0" data-row="1" data-col="0"><a href="#" >B0</a></li>
-          <li id="b1" data-row="1" data-col="1"><a href="#" >B1</a></li>
-          <li id="b2" data-row="1" data-col="2"><a href="#" >B2</a></li>
-          <li id="b3" data-row="1" data-col="3"><a href="#" >B3</a></li>
-          <li id="b4" data-row="1" data-col="4"><a href="#" >B4</a></li>
-          <li id="b5" data-row="1" data-col="5"><a href="#" >B5</a></li>
-          <li id="b6" data-row="1" data-col="6"><a href="#" >B6</a></li>
-          <li id="b7" data-row="1" data-col="7"><a href="#" >B7</a></li>
-        </ul>
-        <br/>
-      <!-- Sound Three -->
-        <ul id="soundThree">
-          <li><i class="fp flaticon-drum"></i></li>
-          <li id="c0" data-row="2" data-col="0"><a href="#" >C0</a></li>
-          <li id="c1" data-row="2" data-col="1"><a href="#" >C1</a></li>
-          <li id="c2" data-row="2" data-col="2"><a href="#" >C2</a></li>
-          <li id="c3" data-row="2" data-col="3"><a href="#" >C3</a></li>
-          <li id="c4" data-row="2" data-col="4"><a href="#" >C4</a></li>
-          <li id="c5" data-row="2" data-col="5"><a href="#" >C5</a></li>
-          <li id="c6" data-row="2" data-col="6"><a href="#" >C6</a></li>
-          <li id="c7" data-row="2" data-col="7"><a href="#" >C7</a></li>
-        </ul>
-        <br/>
-      <!-- Sound Four -->
-        <ul id="soundFour">
-          <li><i class="fp flaticon-chimes"></i></li>
-          <li id="d0" data-row="3" data-col="0"><a href="#" >D0</a></li>
-          <li id="d1" data-row="3" data-col="1"><a href="#" >D1</a></li>
-          <li id="d2" data-row="3" data-col="2"><a href="#" >D2</a></li>
-          <li id="d3" data-row="3" data-col="3"><a href="#" >D3</a></li>
-          <li id="d4" data-row="3" data-col="4"><a href="#" >D4</a></li>
-          <li id="d5" data-row="3" data-col="5"><a href="#" >D5</a></li>
-          <li id="d6" data-row="3" data-col="6"><a href="#" >D6</a></li>
-          <li id="d7" data-row="3" data-col="7"><a href="#" >D7</a></li>
-        </ul>
-        <br/>
+    <section class="comic">
+      <div class="panel">
+        <p class="text top-left">Kiki & Lola...</p>
+        <div class="images">
+          <div>
+           <i class="fp fall flaticon-maracas"></i>
+          </div>
+          <div >
+           <i class="fp fall flaticon-xylophone"></i>
+          </div>
+          <div>
+           <i class="fp fall flaticon-mbira"></i>
+          </div>
+          <div>
+           <i class="fp fall flaticon-drum"></i>
+          </div>
+        </div>
+        <p class="text bottom-right">Learn to play the drms</p>
       </div>
-    </div>
-    <!-- audio -->
-    <audio id="audio0" preload="auto" src="./audio/highSound01.wav" >
-    </audio>
-    <audio id="audio1" preload="auto" src="./audio/animalSkin01.wav">
-    </audio>
-     <audio id="audio2" preload="auto" src="./audio/animalSkin02.wav">
-    </audio>
-     <audio id="audio3" preload="auto" src="./audio/rattle01.wav">
-    </audio>
-
+      <div class="panel">
+        <img src="./css/svg/kikiOne.svg" alt='An image of a young boy' id='kiki'>
+        <p class="speech kiki"> Hello, I'm Kiki.</p>
+        <p class="speech lola"> Hello, I'm Lola.</p>
+        <img src="./css/svg/lolaOne.svg" alt="An image of a young girl" id='lola'>
+      </div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel player"> <a href="player.html"> Click Here For Player</a></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel">
+        <p class="text bottom-right">THE END</p>
+       </div>
+    </section>
     
     <script src="./js/javascript.js"></script>
 
