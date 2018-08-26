@@ -169,7 +169,7 @@ INDEX MAIN BODY
 
  p .speech {
   width: 250px;
-  font-size: 20px
+  font-size: 20px;
 }
 
 .comic {
@@ -314,25 +314,18 @@ li,
 	font-size: 35px;
 }
 
-.instruments li {
+.block {
 	border: solid black 1px;
 	margin: 4px;
 	padding: 2px;
 }
 
-/*.flaticon-maracas:before,
-.flaticon-drum:before,
-.flaticon-chimes:before {
-	font-size: 30px;
-
-}*/
+.counterPos {
+    border: solid red 5px;
+}
 
 .isActive {
 	transform: scale(1.2);
 }
 
-/*Stopped Working*/
 
-.counterPos {
-    border: solid red 10px;
-}
