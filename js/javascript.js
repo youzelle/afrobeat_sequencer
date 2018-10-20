@@ -104,12 +104,12 @@ for (let i = 0; i < numberOfBeats; i++) {
 
     }
 
-document.querySelector(".startrec").addEventListener("click", function() {
+document.getElementById("startrec").addEventListener("click", function() {
     mediaRecorder.start();
     console.log("recorder started");
 })
 
-document.querySelector(".stoprec").addEventListener("click", function() {
+document.getElementById("clear").addEventListener("click", function() {
         mediaRecorder.requestData();
         mediaRecorder.stop();
 })
@@ -144,8 +144,8 @@ function timeInterval() {
 function start() {
     event.preventDefault();
     playing = setInterval(playAudio, timeInterval())
-    document.getElementById("start").classList.add("isActive");
-    document.getElementById("pause").classList.remove("isActive");
+    document.getElementById("start").style.color = "red";
+    document.getElementById("pause").style.color = "red";
 }
 
 
@@ -178,8 +178,8 @@ function playAudio() {
 function pause() {
   event.preventDefault();
     clearInterval(playing);
-    document.getElementById("start").classList.remove("isActive");
-    document.getElementById("pause").classList.add("isActive");
+    document.getElementById("start").style.color = "indigo";
+    document.getElementById("pause").style.color = "indigo";
 }
 
 //Event Listeners

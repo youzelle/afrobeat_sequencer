@@ -68,7 +68,10 @@ h3,
 h4,
 h5,
 figcaption,
-kbd {
+kbd,
+legend,
+.bpmLabel,
+.bpmValue {
   font-family: 'Rock Salt', cursive;
 }
 
@@ -91,6 +94,11 @@ p {
 
 a {
   text-decoration: none;
+}
+
+.bpmLabel {
+  font-size: 12px;
+
 }
 
 /***************************************************************
@@ -296,7 +304,9 @@ INDEX MAIN BODY
 PLAYER MAIN BODY
 *****************************************************************/
 .audioControls {
-  max-width: 30%;
+  max-width: 50%;
+  text-align: center;
+  padding-top: 25px;
 }
 
 ul, 
@@ -308,24 +318,42 @@ li,
 
 .svg-inline--fa {
 	font-size: 27px;
+  margin: 20px;
 }
 
-.svg-inline--fa.fa-play-circle {
+figcaption {
+  text-align: center;
+}
+
+.fa-play-circle,
+.fa-dot-circle {
 	font-size: 35px;
 }
 
+.fa-circle {
+  font-size: 15px;
+  border: none;
+}
+
 .block {
-	border: solid black 1px;
-	margin: 4px;
-	padding: 2px;
+	height: 15px;
+  width: 15px;
+  border: 2px solid indigo;
+  border-radius: 50%;
+  transition: background-color .8s ease-in-out;
+  margin: 5px;
+}
+
+ul li:first-child {
+  margin-right: 20px;
 }
 
 .counterPos {
-    border: solid red 5px;
+    border: solid red 2px;
 }
 
 .isActive {
-	transform: scale(1.2);
+	background-color: indigo;
 }
 
 
