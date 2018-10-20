@@ -106,12 +106,16 @@ for (let i = 0; i < numberOfBeats; i++) {
 
 document.getElementById("startrec").addEventListener("click", function() {
     mediaRecorder.start();
+    document.getElementById("clear").classList.remove('isActiveCtr');
+    document.getElementById("startrec").classList.add('isActiveCtr');
     console.log("recorder started");
 })
 
 document.getElementById("clear").addEventListener("click", function() {
         mediaRecorder.requestData();
         mediaRecorder.stop();
+        document.getElementById("clear").classList.add('isActiveCtr');
+        document.getElementById("startrec").classList.remove('isActiveCtr');
 })
 
 
@@ -121,7 +125,7 @@ function tabActive() {
     row = this.getAttribute('data-row');
     col = this.getAttribute('data-col');
     beatsMatrix[row][col] = !beatsMatrix[row][col];
-    soundLinks[row][col].classList.toggle('isActive');
+    soundLinks[row][col].classList.toggle('isActiveButt');
 }
 
 //adds event listener to each element with className
@@ -144,8 +148,8 @@ function timeInterval() {
 function start() {
     event.preventDefault();
     playing = setInterval(playAudio, timeInterval())
-    document.getElementById("start").style.color = "red";
-    document.getElementById("pause").style.color = "red";
+    document.getElementById("pause").classList.remove('isActiveCtr');
+    document.getElementById("start").classList.add('isActiveCtr');
 }
 
 
@@ -178,8 +182,8 @@ function playAudio() {
 function pause() {
   event.preventDefault();
     clearInterval(playing);
-    document.getElementById("start").style.color = "indigo";
-    document.getElementById("pause").style.color = "indigo";
+     document.getElementById("pause").classList.add('isActiveCtr');
+    document.getElementById("start").classList.remove('isActiveCtr');
 }
 
 //Event Listeners

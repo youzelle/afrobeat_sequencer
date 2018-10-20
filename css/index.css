@@ -158,18 +158,18 @@ INDEX MAIN BODY
 }
 
 
-#kiki,
-#lola {
+.kiki,
+.lola {
   height: 75px;
 }
 
-#kiki {
+.kiki {
   position: relative;
   top: 3%;
   left: 3%;
 }
 
-#lola {
+.lola {
   position: relative;
   bottom: 2%;
   right: 5%;
@@ -303,10 +303,31 @@ INDEX MAIN BODY
 /****************************************************************
 PLAYER MAIN BODY
 *****************************************************************/
+.klIntro {
+  margin-top: 100px;
+}
+
+.kli.speech {
+  width: 300px;
+  position: relative;
+  top: -170px;
+  left: 30%;
+}
+
+.lola.player {
+  left: 10%;
+}
+
+legend {
+  margin: 0;
+}
+
 .audioControls {
-  max-width: 50%;
+  /*margin: auto;*/
+  width: 400px;
   text-align: center;
   padding-top: 25px;
+  font-size: 16px;
 }
 
 ul, 
@@ -335,13 +356,32 @@ figcaption {
   border: none;
 }
 
+.instruments {
+  border: 1px solid indigo;
+  border-radius: 2%;
+  opacity: .9;
+  width: 500px;
+  margin: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+  padding-right: 10px;
+}
+
+ul.sound {
+  margin: 20px;
+}
+
+ul.sound
+
 .block {
-	height: 15px;
+	height: 2px;
   width: 15px;
   border: 2px solid indigo;
   border-radius: 50%;
-  transition: background-color .8s ease-in-out;
-  margin: 5px;
+  background-color: indigo;
+  transition: background-color .9s ease-in-out;
+  margin: 10px;
+  margin-bottom: 15px;
 }
 
 ul li:first-child {
@@ -352,8 +392,24 @@ ul li:first-child {
     border: solid red 2px;
 }
 
-.isActive {
-	background-color: indigo;
+.sound {
+  height: 30px;
 }
+
+.isActiveCtr {
+  border: 1px solid indigo;
+  border-radius: 10%;
+  opacity: .7;
+}
+
+.isActiveButt {
+	background-color: indigo;
+  /*border-radius: 0;*/
+  height: 15px;
+  width: 15px;
+  margin-bottom: 10px;
+}
+
+
 
 
