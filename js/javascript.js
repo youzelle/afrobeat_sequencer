@@ -94,7 +94,7 @@ for (let i = 0; i < numberOfBeats; i++) {
        var anchorTag = document.createElement("a")
        //var anchorTag = document.getElementById("downLoad");
        
-       anchorTag.innerHTML="<figcaption>Download</figcaption>";
+       anchorTag.innerHTML="<figcaption>keep</figcaption>";
 
        // creates the download link
        //anchorTag.href = URL.createObjectURL(blob);

@@ -60,7 +60,6 @@ ANIMATIONS
     }
 }
 
-
 /*******************
   BASE FONT STYLES
 *******************/
@@ -123,8 +122,7 @@ INDEX MAIN BODY
           animation-duration: 2s;
           animation-iteration-count: 2;
           transform: translateX(-30%) translateY(-70px) ;
-/*  box-shadow:0 3px 4px rgba(0, 0, 8, 0.3), 0 0 40px rgba(0, 0, 30, 0.1) inset;
-*/}
+}
 
 .fp.flaticon-maracas {
   animation-delay: 0s;
@@ -300,8 +298,6 @@ INDEX MAIN BODY
   flex-basis: 200px;
 }
 
-
-
 /****************************************************************
 PLAYER MAIN BODY
 *****************************************************************/
@@ -310,6 +306,9 @@ PLAYER MAIN BODY
 }
 
 .kli.speech {
+  color:  #8b171a;
+  border:solid 2px #8b171a;
+  font-weight: bold;
   text-align: center;
   width: 180px;
   position: relative;
@@ -317,12 +316,22 @@ PLAYER MAIN BODY
   left: 10%;
 }
 
+.kli.speech:before {
+  border-left:solid 12px #8b171a;
+  border-top:solid 12px #8b171a;
+}
+
 .lola.player {
   left: 10%;
   bottom: 20px;
 }
 
+legend {
+  font-size: 18px;
+}
+
 .audioControls {
+  color: #324ab2;
   margin: 0 auto;
   width: 300px;
   text-align: center;
@@ -330,8 +339,36 @@ PLAYER MAIN BODY
   font-size: 12px;
 }
 
-input {
-  height: 10px;
+input[type=range] {
+  height: 5px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 60%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 60%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #fff;
+  border-radius: 20%;
+  border: 1px solid #2497E3;
+}
+input[type=range]::-webkit-slider-thumb {
+  border: 2px solid #2497E3;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #A1D0FF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #2497E3;
 }
 
 ul, 
@@ -342,16 +379,19 @@ li,
 }
 
 figcaption {
+  color: #324ab2;
   text-align: center;
 }
 
 .svg-inline--fa {
+  color: #2497E3;
   font-size: 15px;
   margin: 10px;
 }
 
 .fa-play-circle,
-.fa-dot-circle {
+.fa-dot-circle,
+.fa-stop-circle {
 	font-size: 20px;
 }
 
@@ -359,7 +399,6 @@ figcaption {
   font-size: 10px;
   border: none;
 }
-
 
 .instruments {
   border: 1px solid indigo;
@@ -401,7 +440,7 @@ ul li .fp:first-child {
 }
 
 .counterPos {
-    border: solid red 2px;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0000ff, 0 0 25px #0000ff, 0 0 40px #0000ff, 0 0 40px #0000ff, 0 0 65px #0000ff;
 }
 
 .isActiveCtr {
