@@ -37,6 +37,29 @@ a:active {
 ANIMATIONS
 ************************************************************/
 
+@-webkit-keyframes fall {
+  0% {
+    top: 50px;
+    opacity: 0;
+  }
+  1% {
+    top: 50px;
+    opacity: 1;
+  }
+  40% {
+    top: 100px;
+  }
+  60% {
+    top: 125px;
+  }
+  80% {
+    top: 100px;
+  }
+  100% {
+    top: 125px;
+    }
+}
+
 @keyframes fall {
   0% {
     top: 50px;
@@ -106,8 +129,11 @@ a {
 INDEX MAIN BODY
 ****************************************************************/
 .images {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   position: relative;
   margin-top: 50px;
   max-width: 180vw;
@@ -118,24 +144,32 @@ INDEX MAIN BODY
 .fp.fall {
   position: absolute;
   top: 125px;
-          animation: fall;
-          animation-duration: 2s;
-          animation-iteration-count: 2;
-          transform: translateX(-30%) translateY(-70px) ;
+          -webkit-animation: fall;
+                  animation: fall;
+          -webkit-animation-duration: 2s;
+                  animation-duration: 2s;
+          -webkit-animation-iteration-count: 2;
+                  animation-iteration-count: 2;
+          -webkit-transform: translateX(-30%) translateY(-70px) ;
+              -ms-transform: translateX(-30%) translateY(-70px) ;
+                  transform: translateX(-30%) translateY(-70px) ;
 }
 
 .fp.flaticon-maracas {
-  animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
   color: indigo;
 }
 
 .fp.flaticon-xylophone {
-  animation-delay: 2s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
   color: #800000;
 }
 
 .fp.flaticon-mbira {
-  animation-delay: 4s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
   color: #734f96;
 }
 
@@ -146,7 +180,8 @@ INDEX MAIN BODY
 
 
 .fp.flaticon-drum {
-  animation-delay: 6s;
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
   color: #997300;
 }
 
@@ -181,17 +216,23 @@ INDEX MAIN BODY
 }
 
 .comic {
+  display:-webkit-box;
+  display:-ms-flexbox;
   display:flex;
-  flex-wrap:wrap;
+  -ms-flex-wrap:wrap;
+      flex-wrap:wrap;
   padding:10px;
 }
 
 .panel {
   background-color:#fff;
   border:solid 2px #000;
-  box-shadow:0 6px 6px -6px #000;
+  -webkit-box-shadow:0 6px 6px -6px #000;
+          box-shadow:0 6px 6px -6px #000;
   display:inline-block;
-  flex:1 1;
+  -webkit-box-flex:1;
+      -ms-flex:1 1;
+          flex:1 1;
   height:200px;
   margin:10px;
   overflow:hidden;
@@ -209,14 +250,18 @@ INDEX MAIN BODY
   left:-6px;
   position:absolute;
   top:-2px;
-  transform:skew(-15deg);
+  -webkit-transform:skew(-15deg);
+      -ms-transform:skew(-15deg);
+          transform:skew(-15deg);
 }
 
 .bottom-right {
   bottom:-2px;
   position:absolute;
   right:-6px;
-  transform:skew(-15deg);
+  -webkit-transform:skew(-15deg);
+      -ms-transform:skew(-15deg);
+          transform:skew(-15deg);
 }
 
 .speech {
@@ -239,7 +284,9 @@ INDEX MAIN BODY
   height:0;
   left:24px;
   position:absolute;
-  transform:skew(-15deg);
+  -webkit-transform:skew(-15deg);
+      -ms-transform:skew(-15deg);
+          transform:skew(-15deg);
   width:0;
 }
 
@@ -252,7 +299,9 @@ INDEX MAIN BODY
   height:0;
   left:27px;
   position:absolute;
-  transform:skew(-15deg);
+  -webkit-transform:skew(-15deg);
+      -ms-transform:skew(-15deg);
+          transform:skew(-15deg);
   width:0;
 }
 
@@ -262,40 +311,53 @@ INDEX MAIN BODY
 
 .speech.lola:before {
    left: 90px;
-   transform:skew(50deg);
+   -webkit-transform:skew(50deg);
+       -ms-transform:skew(50deg);
+           transform:skew(50deg);
 }
 
 .speech.lola:after {
   left: 90px;
-  transform:skew(50deg);
+  -webkit-transform:skew(50deg);
+      -ms-transform:skew(50deg);
+          transform:skew(50deg);
 }
 
 .panel:nth-child(1) {
-  flex-basis: 400px;
+  -ms-flex-preferred-size: 400px;
+      flex-basis: 400px;
 }
 .panel:nth-child(2) {
-  flex-basis: 200px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 .panel:nth-child(3) {
-  flex-basis: 200px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 .panel:nth-child(4) {
-  flex-basis: 200px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 .panel:nth-child(5) {
-  flex-basis: 200px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 .panel:nth-child(6) {
-  flex-basis: 200px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 .panel:nth-child(7) {
-  flex-basis: 400px;
+  -ms-flex-preferred-size: 400px;
+      flex-basis: 400px;
 }
 .panel:nth-child(8) {
-  flex-basis: 200px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 .panel:nth-child(9) {
-  flex-basis: 200px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 
 /****************************************************************
@@ -383,6 +445,27 @@ figcaption {
   text-align: center;
 }
 
+.wrapper {
+  position: relative;
+}
+
+.strikethrough::before{
+  position:relative;
+  -webkit-transform:rotate(-10deg) translateY(-50%);
+      -ms-transform:rotate(-10deg) translateY(-50%);
+          transform:rotate(-10deg) translateY(-50%);
+  top:10px;
+  left:-5%;
+  display:block;
+  content:'';
+  background: #324ab2;
+  width:110%;
+  height: 1px;
+  opacity: 1;
+}
+
+
+
 .svg-inline--fa {
   color: #2497E3;
   font-size: 15px;
@@ -392,7 +475,7 @@ figcaption {
 .fa-play-circle,
 .fa-dot-circle,
 .fa-stop-circle {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .fa-circle {
@@ -421,11 +504,13 @@ ul.sound {
 }
 
 .block {
-	height: 1px;
+  height: 1px;
   width: 10px;
   border: 2px solid indigo;
   border-radius: 50%;
   background-color: indigo;
+  -webkit-transition: background-color .9s ease-in-out;
+  -o-transition: background-color .9s ease-in-out;
   transition: background-color .9s ease-in-out;
   margin: 5px;
   margin-bottom: 10px;
@@ -440,7 +525,8 @@ ul li .fp:first-child {
 }
 
 .counterPos {
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0000ff, 0 0 25px #0000ff, 0 0 40px #0000ff, 0 0 40px #0000ff, 0 0 65px #0000ff;
+  -webkit-box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0000ff, 0 0 25px #0000ff, 0 0 40px #0000ff, 0 0 40px #0000ff, 0 0 65px #0000ff;
+          box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0000ff, 0 0 25px #0000ff, 0 0 40px #0000ff, 0 0 40px #0000ff, 0 0 65px #0000ff;
 }
 
 .isActiveCtr {
@@ -450,7 +536,7 @@ ul li .fp:first-child {
 }
 
 .isActiveButt {
-	background-color: indigo;
+  background-color: indigo;
   /*border-radius: 0;*/
   height: 10px;
   width: 10px;
