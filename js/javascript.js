@@ -91,20 +91,28 @@ for (let i = 0; i < numberOfBeats; i++) {
        // Make blob out of our blobs, and open it.
        var blob = new Blob(chunks, { 'type' : "audio/webm;codecs=opus" });
 
-       var anchorTag = document.createElement("a");
-       anchorTag.setAttribute('download', 'download');
-       anchorTag.innerHTML="download me";
+       var anchorTag = document.createElement("a")
+       //var anchorTag = document.getElementById("downLoad");
+       
+       anchorTag.innerHTML="<figcaption>keep</figcaption>";
 
        // creates the download link
-       anchorTag.href = URL.createObjectURL(blob);
+       //anchorTag.href = URL.createObjectURL(blob);
+       anchorTag.setAttribute("href", URL.createObjectURL(blob));
+       anchorTag.setAttribute('download', 'drumBeat');
 
-       document.body.appendChild(anchorTag);
+
+       var par = document.getElementById("pDlBut");
+       var child = document.getElementById("dlBut")
+       par.removeChild(child);
+       document.getElementById("downLoad").appendChild(anchorTag);
 
        chunks = [];
 
     }
 
 document.getElementById("startrec").addEventListener("click", function() {
+    event.preventDefault();
     mediaRecorder.start();
     document.getElementById("clear").classList.remove('isActiveCtr');
     document.getElementById("startrec").classList.add('isActiveCtr');
@@ -112,6 +120,7 @@ document.getElementById("startrec").addEventListener("click", function() {
 })
 
 document.getElementById("clear").addEventListener("click", function() {
+        event.preventDefault();
         mediaRecorder.requestData();
         mediaRecorder.stop();
         document.getElementById("clear").classList.add('isActiveCtr');
