@@ -407,7 +407,7 @@ figcaption {
 }
 
 .instruments {
-  border: 1px solid indigo;
+  border: 1px solid grey;
   border-radius: 2%;
   opacity: .9;
   width: 300px;
@@ -430,10 +430,9 @@ ul.sound {
 .block {
 	height: 1px;
   width: 10px;
-  border: 2px solid indigo;
+  border: 2px solid #787878;
   border-radius: 50%;
-  background-color: indigo;
-  transition: background-color .9s ease-in-out;
+  background-color: #787878;
   margin: 5px;
   margin-bottom: 10px;
 }
@@ -458,12 +457,31 @@ ul li .fp:first-child {
 
 .isActiveButt {
 	background-color: indigo;
-  /*border-radius: 0;*/
+  border: 2px solid indigo;
   height: 10px;
   width: 10px;
   margin-bottom: 5px;
 }
 
+#djembeOne .isActiveButt {
+  background-color: #800000;
+  border: 2px solid #800000;
+}
+
+#bellOne .isActiveButt {
+  background-color: #997300;
+  border: 2px solid #997300;
+}
+
+#soundThree .isActiveButt {
+  background-color: #997300;
+  border: 2px solid #997300;
+}
+
+#soundFour .isActiveButt {
+  background-color: indigo;
+  border: 2px solid indigo;
+}
 
 
 
