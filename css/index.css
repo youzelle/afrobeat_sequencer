@@ -314,12 +314,17 @@ PLAYER MAIN BODY
   position: relative;
   top: -80px;
   left: 10%;
+  box-shadow: 8px 8px 8px -5px #9b111f;
 }
 
 .kli.speech:before {
   border-left:solid 12px #8b171a;
   border-top:solid 12px #8b171a;
 }
+
+/*.kli.speech:before {
+  box-shadow: 0px 0px 10px indigo;
+}*/
 
 .lola.player {
   left: 10%;
@@ -337,6 +342,7 @@ legend {
   text-align: center;
   padding-top: 20px;
   font-size: 12px;
+  box-shadow: 10px 10px 10px -5px #2B9ED0;
 }
 
 input[type=range] {
@@ -409,6 +415,7 @@ figcaption {
   text-align: center;
   padding-bottom: 20px;
   padding-right: 10px;
+  box-shadow: 10px 10px 10px -5px #4E6A76;
 }
 
 .sound {
