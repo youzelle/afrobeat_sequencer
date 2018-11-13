@@ -21,7 +21,7 @@ for (let j = 0; j < numberOfInstr; j++) {
 }
 console.log(audio)
 
-
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioContext = new AudioContext()
 
 

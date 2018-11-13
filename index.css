@@ -401,7 +401,7 @@ figcaption {
 }
 
 .instruments {
-  border: 1px solid indigo;
+  border: 1px solid black;
   border-radius: 2%;
   opacity: .9;
   width: 300px;
@@ -409,6 +409,7 @@ figcaption {
   text-align: center;
   padding-bottom: 20px;
   padding-right: 10px;
+  box-shadow: 0 -50px 50px -50px green;
 }
 
 .sound {
