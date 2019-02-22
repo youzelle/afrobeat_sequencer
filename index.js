@@ -21,31 +21,36 @@ for (let j = 0; j < numberOfInstr; j++) {
 }
 console.log(audio)
 
-    var AudioContext = window.AudioContext || window.webkitAudioContext;
-    let audioContext = new AudioContext()
+
+    try {
+
+        AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioContext();
+
+    } catch (e) {
+        alert('Features of this app not supported.');
+        throw new Error('Web Audio API not supported.');
+    }
 
 
-    let audioZero = document.getElementById("audio0")
-    let audioOne = document.getElementById("audio1")
-    let audioTwo = document.getElementById("audio2")
-    let audioThree = document.getElementById("audio3")
+    let audioZero = document.getElementById("audio0");
+    let audioOne = document.getElementById("audio1");
+    let audioTwo = document.getElementById("audio2");
+    let audioThree = document.getElementById("audio3");
 
     // creates a link between audio context and file
-    const xylo = audioContext.createMediaElementSource(audioZero)
-    const djembeOne = audioContext.createMediaElementSource(audioOne)
-    const djembeTwo = audioContext.createMediaElementSource(audioTwo)
-    const maracas = audioContext.createMediaElementSource(audioThree)
+    const xylo = audioContext.createMediaElementSource(audioZero);
+    const djembeOne = audioContext.createMediaElementSource(audioOne);
+    const djembeTwo = audioContext.createMediaElementSource(audioTwo);
+    const maracas = audioContext.createMediaElementSource(audioThree);
 
 
-    let gainNode = audioContext.createGain()
+    let gainNode = audioContext.createGain();
 
-    xylo.connect(gainNode)
-    djembeOne.connect(gainNode)
-    djembeTwo.connect(gainNode)
-    maracas.connect(gainNode)
-
-// const audio = [ xylo.connect(gainNode), djembeOne.connect(gainNode), djembeTwo.connect(gainNode),
-//     maracas.connect(gainNode)]
+    xylo.connect(gainNode);
+    djembeOne.connect(gainNode);
+    djembeTwo.connect(gainNode);
+    maracas.connect(gainNode);
 
 //store DOM elements in JS array
 const soundLinks = [[],[],[],[]];
@@ -56,15 +61,6 @@ for (let i = 0; i < numberOfBeats; i++) {
     soundLinks[2].push(document.getElementById("c" + i));
     soundLinks[3].push(document.getElementById("d" + i))
 }
-// // const char = ['a', 'b', 'c', 'd'];
-
-// // for (let s = 0; s < soundLinks.length; s++) {
-// //     for ( let t = 0; t < char.length; t++ ) {
-// //         for ( let i = 0; i<numberOfBeats; i++) {
-// //             soundLinks[s].push(document.getElementById(char[t] + i))
-// //         }
-// //     }
-// // };
 
 // creates link to the speaker
     gainNode.connect(audioContext.destination);
@@ -73,12 +69,12 @@ for (let i = 0; i < numberOfBeats; i++) {
     gainNode.gain.value = 1;
 
     //Gets stream of data from the speaker output - gives the ability to store
-    const dest = audioContext.createMediaStreamDestination()
+    const dest = audioContext.createMediaStreamDestination();
     //connects sound producing part of node
-    gainNode.connect(dest)
+    gainNode.connect(dest);
 
     //This records the stream 
-    var mediaRecorder = new MediaRecorder(dest.stream)
+    var mediaRecorder = new MediaRecorder(dest.stream);
 
     let chunks = [];
 
@@ -87,43 +83,44 @@ for (let i = 0; i < numberOfBeats; i++) {
         chunks.push(evt.data);
     }
 
-    mediaRecorder.onstop = function(evt) {
-       // Make blob out of our blobs, and open it.
-       var blob = new Blob(chunks, { 'type' : "audio/webm;codecs=opus" });
+mediaRecorder.onstop = function(evt) {
+    evt.preventDefault();
+    // Make blob out of our blobs, and open it.
+    const blob = new Blob(chunks, { 'type' : "audio/webm;codecs=opus" });
 
-       var anchorTag = document.createElement("a")
-       //var anchorTag = document.getElementById("downLoad");
-       
-       anchorTag.innerHTML="<figcaption>keep</figcaption>";
+    const anchorTag = document.createElement("a");
+    //var anchorTag = document.getElementById("downLoad");
+    
+    anchorTag.innerHTML="<figcaption>keep</figcaption>";
 
-       // creates the download link
-       //anchorTag.href = URL.createObjectURL(blob);
-       anchorTag.setAttribute("href", URL.createObjectURL(blob));
-       anchorTag.setAttribute('download', 'drumBeat');
+    // creates the download link
+    //anchorTag.href = URL.createObjectURL(blob);
+    anchorTag.setAttribute("href", URL.createObjectURL(blob));
+    anchorTag.setAttribute('download', 'drumBeat');
 
+        //when link is ready append to 'keep' button
+    const par = document.getElementById("parentKeepBut");
+    const child = document.getElementById("childKeepBut");
+    par.removeChild(child);
+    document.getElementById("download").appendChild(anchorTag);
 
-       var par = document.getElementById("pDlBut");
-       var child = document.getElementById("dlBut")
-       par.removeChild(child);
-       document.getElementById("downLoad").appendChild(anchorTag);
+    chunks = [];
 
-       chunks = [];
-
-    }
+}
 
 document.getElementById("startrec").addEventListener("click", function() {
     event.preventDefault();
     mediaRecorder.start();
-    document.getElementById("clear").classList.remove('isActiveCtr');
+    document.getElementById("stoprec").classList.remove('isActiveCtr');
     document.getElementById("startrec").classList.add('isActiveCtr');
     console.log("recorder started");
 })
 
-document.getElementById("clear").addEventListener("click", function() {
+document.getElementById("stoprec").addEventListener("click", function() {
         event.preventDefault();
         mediaRecorder.requestData();
         mediaRecorder.stop();
-        document.getElementById("clear").classList.add('isActiveCtr');
+        document.getElementById("stoprec").classList.add('isActiveCtr');
         document.getElementById("startrec").classList.remove('isActiveCtr');
 })
 
@@ -153,10 +150,14 @@ function timeInterval() {
     return Math.floor((60000)/(document.getElementById('bpm').value*2));
 }
 
-
+//autoplay policy puts audiocontext in suspended state before user interaction
+//need to call resume() to put in running state 
 function start() {
     event.preventDefault();
-    playing = setInterval(playAudio, timeInterval())
+    audioContext.resume().then(() => {
+        console.log('Playback resumed successfully');
+      });
+    playing = setInterval(playAudio, timeInterval());
     document.getElementById("pause").classList.remove('isActiveCtr');
     document.getElementById("start").classList.add('isActiveCtr');
 }
@@ -197,25 +198,9 @@ function pause() {
 
 //Event Listeners
 //starts audio
-document.getElementById("start").addEventListener('click', start)
+document.getElementById("start").addEventListener('click', start);
 //stops audio
-document.getElementById("pause").addEventListener('click', pause)
+document.getElementById("pause").addEventListener('click', pause);
 //bpm sets time interval
-document.getElementById("bpm").addEventListener('input', timeInterval)
-
-
-
-// document.querySelector(".startOne").addEventListener("click", function() {
-//     audioZero.play();
-// });
-
-// document.querySelector(".startTwo").addEventListener("click", function() {
-//     audioOne.play();
-// });
-
-
-
-
-
-
+document.getElementById("bpm").addEventListener('input', timeInterval);
     
