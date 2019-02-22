@@ -398,7 +398,7 @@ figcaption {
 .fa-play-circle,
 .fa-dot-circle,
 .fa-stop-circle {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .fa-circle {
@@ -428,7 +428,7 @@ ul.sound {
 }
 
 .block {
-	height: 1px;
+  height: 1px;
   width: 10px;
   border: 2px solid #787878;
   border-radius: 50%;
@@ -456,7 +456,7 @@ ul li .fp:first-child {
 }
 
 .isActiveButt {
-	background-color: indigo;
+  background-color: indigo;
   border: 2px solid indigo;
   height: 10px;
   width: 10px;
@@ -482,8 +482,3 @@ ul li .fp:first-child {
   background-color: indigo;
   border: 2px solid indigo;
 }
-
-
-
-
-

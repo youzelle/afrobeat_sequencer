@@ -21,7 +21,7 @@ for (let j = 0; j < numberOfInstr; j++) {
 }
 console.log(audio)
 
-    var AudioContext = window.AudioContext || window.webkitAudioContext;
+    //var AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioContext = new AudioContext()
 
 
@@ -88,6 +88,7 @@ for (let i = 0; i < numberOfBeats; i++) {
     }
 
     mediaRecorder.onstop = function(evt) {
+        evt.preventDefault();
        // Make blob out of our blobs, and open it.
        var blob = new Blob(chunks, { 'type' : "audio/webm;codecs=opus" });
 
@@ -114,16 +115,16 @@ for (let i = 0; i < numberOfBeats; i++) {
 document.getElementById("startrec").addEventListener("click", function() {
     event.preventDefault();
     mediaRecorder.start();
-    document.getElementById("clear").classList.remove('isActiveCtr');
+    document.getElementById("stoprec").classList.remove('isActiveCtr');
     document.getElementById("startrec").classList.add('isActiveCtr');
     console.log("recorder started");
 })
 
-document.getElementById("clear").addEventListener("click", function() {
+document.getElementById("stoprec").addEventListener("click", function() {
         event.preventDefault();
         mediaRecorder.requestData();
         mediaRecorder.stop();
-        document.getElementById("clear").classList.add('isActiveCtr');
+        document.getElementById("stoprec").classList.add('isActiveCtr');
         document.getElementById("startrec").classList.remove('isActiveCtr');
 })
 
@@ -204,14 +205,6 @@ document.getElementById("pause").addEventListener('click', pause)
 document.getElementById("bpm").addEventListener('input', timeInterval)
 
 
-
-// document.querySelector(".startOne").addEventListener("click", function() {
-//     audioZero.play();
-// });
-
-// document.querySelector(".startTwo").addEventListener("click", function() {
-//     audioOne.play();
-// });
 
 
 
