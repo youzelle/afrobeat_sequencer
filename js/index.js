@@ -203,3 +203,7 @@ document.getElementById("start").addEventListener('click', start);
 document.getElementById("pause").addEventListener('click', pause);
 //bpm sets time interval
 document.getElementById("bpm").addEventListener('input', timeInterval);
+
+
+
+    
