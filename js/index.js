@@ -21,20 +21,16 @@ for (let j = 0; j < numberOfInstr; j++) {
 }
 console.log(audio)
 
-    // try {
-    //     // window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    //     // window.audioContext = new AudioContext();
 
-    //     const AudioContext = window.AudioContext || window.webkitAudioContext;
-    //     const audioContext = new AudioContext()
+    try {
 
-    // } catch (e) {
-    //     alert('Features of this app not supported.');
-    //     throw new Error('Web Audio API not supported.');
-    // }
+        AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioContext();
 
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioContext = new AudioContext();
+    } catch (e) {
+        alert('Features of this app not supported.');
+        throw new Error('Web Audio API not supported.');
+    }
 
 
     let audioZero = document.getElementById("audio0");
