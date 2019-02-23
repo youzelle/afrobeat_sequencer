@@ -108,11 +108,17 @@ mediaRecorder.onstop = function(evt) {
 
 }
 
+function swapButtons(hide, show) {
+    document.getElementById(show).classList.remove('hidden');
+    document.getElementById(hide).classList.add('hidden');
+  }
+
 document.getElementById("startrec").addEventListener("click", function() {
     event.preventDefault();
     mediaRecorder.start();
     document.getElementById("stoprec").classList.remove('isActiveCtr');
     document.getElementById("startrec").classList.add('isActiveCtr');
+    swapButtons("startrec", "stoprec");
     console.log("recorder started");
 })
 
@@ -122,6 +128,7 @@ document.getElementById("stoprec").addEventListener("click", function() {
         mediaRecorder.stop();
         document.getElementById("stoprec").classList.add('isActiveCtr');
         document.getElementById("startrec").classList.remove('isActiveCtr');
+        swapButtons("stoprec", "startrec");
 })
 
 
