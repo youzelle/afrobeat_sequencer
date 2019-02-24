@@ -46,7 +46,6 @@ const djembeOne = audioContext.createMediaElementSource(audio[1]);
 const djembeTwo = audioContext.createMediaElementSource(audio[2]);
 const maracas = audioContext.createMediaElementSource(audio[3]);
 
-
 const gainNode = audioContext.createGain();
 
 xylo.connect(gainNode);
@@ -212,6 +211,3 @@ document.getElementById("startrec").addEventListener("click", startRec);
 document.getElementById("stoprec").addEventListener("click", stopRec);
 document.getElementById("bpm").addEventListener("input", timeInterval);
 
-
-
-    
