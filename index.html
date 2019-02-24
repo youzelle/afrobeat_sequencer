@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
   	<meta charset="UTF-8">
@@ -33,12 +33,12 @@
                min="30" max="90" step="5" oninput="bpmChange(this.value)"/>
         <output name="bpmOutput" id="bpmValue"></output></br>
         <ul class='crlButton'>
-            <li id="stop"><a href="#"><i class="far fa-stop-circle"></i><figcaption>stop</figcaption></a></li>
-          <li id="pause"><a href="#"><i class="far fa-pause-circle"></i><figcaption>pause</figcaption></a></li>
+          <li id="stop"><a href="#"><i class="far fa-stop-circle"></i><figcaption>stop</figcaption></a></li>
+          <li id="pause" class="hidden"><a href="#"><i class="far fa-pause-circle"></i><figcaption>pause</figcaption></a></li>
           <li id="start"><a href="#"><i class="far fa-play-circle"></i><figcaption>play</figcaption></a></li> 
           <li id="startrec"><a href="#"><i class="far fa-dot-circle"></i><figcaption>rec</figcaption></a></li> 
           <li id="stoprec" class="hidden"><a href="#"><i class="far fa-dot-circle"></i><figcaption><s>rec</s></figcaption></a></li>
-          <li id="download"><a href="#" id="parentKeepBut"><i class="far fa-arrow-alt-circle-down"></i><figcaption id="childKeepBut">keep</figcaption></a></li>
+          <li id="download"><a href="#" id="keepBut"><i class="far fa-arrow-alt-circle-down"></i><figcaption>keep</figcaption></a></li>
         </ul>
       </fieldset>
 
@@ -97,6 +97,7 @@
         <br/>
       </div>
     </div>
+
     <!-- audio -->
     <audio id="audio0" preload="auto" src="./audio/highSound01.wav" >
     </audio>

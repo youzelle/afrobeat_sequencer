@@ -358,7 +358,6 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 60%;
   height: 5px;
   cursor: pointer;
-  animate: 0.2s;
   background: #fff;
   border-radius: 20%;
   border: 1px solid #2497E3;
@@ -396,13 +395,14 @@ figcaption {
 }
 
 .fa-play-circle,
-.fa-dot-circle,
-.fa-stop-circle {
-  font-size: 20px;
+.fa-pause-circle,
+.fa-dot-circle {
+  font-size: 25px;
 }
 
-.fa-circle {
-  font-size: 10px;
+.fa-stop-circle,
+.fa-arrow-alt-circle-down {
+  font-size: 20px;
   border: none;
 }
 
