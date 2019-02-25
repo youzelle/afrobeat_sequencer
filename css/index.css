@@ -358,7 +358,6 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 60%;
   height: 5px;
   cursor: pointer;
-  animate: 0.2s;
   background: #fff;
   border-radius: 20%;
   border: 1px solid #2497E3;
@@ -382,6 +381,7 @@ li,
 .crlButton ul li {
   list-style: none;
   display: inline-block;
+  padding-left: 0;
 }
 
 figcaption {
@@ -396,13 +396,20 @@ figcaption {
 }
 
 .fa-play-circle,
+<<<<<<< HEAD
 .fa-dot-circle,
 .fa-stop-circle {
   font-size: 20px;
+=======
+.fa-pause-circle,
+.fa-dot-circle {
+  font-size: 25px;
+>>>>>>> 61fa7ecbaa988d9f2ec02e798ad6609500e54399
 }
 
-.fa-circle {
-  font-size: 10px;
+.fa-stop-circle,
+.fa-arrow-alt-circle-down {
+  font-size: 20px;
   border: none;
 }
 
@@ -413,8 +420,7 @@ figcaption {
   width: 300px;
   margin: 20px;
   text-align: center;
-  padding-bottom: 20px;
-  padding-right: 10px;
+  padding: 20px 10px;
   box-shadow: 10px 10px 10px -5px #4E6A76;
 }
 
