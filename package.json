@@ -1,0 +1,21 @@
+{
+  "name": "afrobeat_sequencer",
+  "version": "1.0.0",
+  "description": "The music sequencer allows users to click on tabs and play drum beats on a loop. The timing of te sequence can be controlled via the bpm. The user can also record and download their drum beats.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youzelle/afrobeat_sequencer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youzelle/afrobeat_sequencer/issues"
+  },
+  "homepage": "https://github.com/youzelle/afrobeat_sequencer#readme"
+
+}

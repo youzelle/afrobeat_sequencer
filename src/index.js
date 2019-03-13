@@ -1,4 +1,3 @@
-
 const musicMachine = [[],[],[],[]];
 const numberOfInstr = 4;
 let counter = 0;
@@ -24,9 +23,7 @@ try {
   //new instance of MediaRecorder
   const mediaRecorder = new MediaRecorder(dest.stream);
 
-function setUp() {
-
-  
+function setUpAudio() {
 
     //store DOM elements in JS array
     for (let i = 0; i < numberOfBeats; i++) {
@@ -58,24 +55,43 @@ function setUp() {
     djembeOne.connect(gainNode).connect(audioContext.destination);
     djembeTwo.connect(gainNode).connect(audioContext.destination);
     maracas.connect(gainNode).connect(audioContext.destination);
+}
 
-    //when data is available an event is raised, this listens for it
-    mediaRecorder.ondataavailable = function(event) {
+function setUpRecorder() {
+    //when data is available an event is raised, this listens for it    
+    mediaRecorder.ondataavailable = handleChunks;
+
+    mediaRecorder.onstop = downloadChunks;
+
+}
+
+function handleChunks(event) {
+    try {
         chunks.push(event.data);
-    }
-
-    mediaRecorder.onstop = function(event) {
-        // Make blob out of our blobs, and open it.
-        const blob = new Blob(chunks, { "type" : "audio/webm;codecs=opus" });    
-
-        // creates the download link
-        document.getElementById("keepBut").setAttribute("href", URL.createObjectURL(blob));
-        document.getElementById("keepBut").setAttribute("download", "drumBeat");
-
-        chunks = [];
-
+    } catch (error) {
+        console.log('The following error occurred: ' + error);
     }
 }
+
+function downloadChunks(event) {
+    // Make blob out of our blobs, and open it.
+    //make sure down but is enabled
+    const blob = new Blob(chunks, { "type" : "audio/webm;codecs=opus" });    
+    const url = URL.createObjectURL(blob);
+
+    document.getElementById("keepBut").setAttribute("href", url);
+    document.getElementById("keepBut").setAttribute("download", "drumBeat");  
+
+   document.getElementById("keepBut").addEventListener("click", () => {
+       setTimeout(() => {
+           window.URL.revokeObjectURL(url);
+           //diasble download
+       },
+       2000)
+   });
+
+    chunks = [];
+} 
 
 //BUTTON HELPERS
 
@@ -97,11 +113,6 @@ function toggleDisable(button) {
 
 //CONTROLS
 
-//uses input from slider to update output tag value
-function bpmChange(val) {
-    document.getElementById('bpmValue').innerHTML = val;
-}
-
 //sets time interval based on slider bpm value
 function timeInterval() {
     return Math.floor((60000)/(document.getElementById("bpm").value*2));
@@ -115,9 +126,8 @@ function start() {
         audioContext.resume();
         console.log("Playback resumed successfully");
     }
+    //scheduler();
     playing = setInterval(playAudio, timeInterval());
-    // document.getElementById("pause").classList.remove("isActiveCtr");
-    // document.getElementById("start").classList.add("isActiveCtr");
     swapButtons("start", "pause");
 
 }
@@ -125,12 +135,11 @@ function start() {
 function pause() {
     event.preventDefault();
       clearInterval(playing);
-    //   document.getElementById("pause").classList.add("isActiveCtr");
-    //   document.getElementById("start").classList.remove("isActiveCtr");
       swapButtons("pause", "start");
   }
   
 function stop() {
+    //disable download
     event.preventDefault();
     counter = 0;
     for (let r = 0; r < numberOfInstr; r++) {
@@ -145,8 +154,6 @@ function stop() {
 function startRec() {
     event.preventDefault();
     mediaRecorder.start();
-    // document.getElementById("stoprec").classList.remove("isActiveCtr");
-    // document.getElementById("startrec").classList.add("isActiveCtr");
     swapButtons("startrec", "stoprec");
     console.log("recorder started");
 };
@@ -155,12 +162,16 @@ function stopRec() {
     event.preventDefault();
     mediaRecorder.requestData();
     mediaRecorder.stop();
-    // document.getElementById("stoprec").classList.add("isActiveCtr");
-    // document.getElementById("startrec").classList.remove("isActiveCtr");
     swapButtons("stoprec", "startrec");
     console.log("recorder stopped");
 };
 
+function clearDownload(event, url) {
+    event.preventDefault();
+    console.log("Downloading")
+    window.URL.revokeObjectURL(url);
+}
+ 
 //MUSIC SEQUENCER
 function tabActive() {
     event.preventDefault();
@@ -170,7 +181,7 @@ function tabActive() {
 }
 
 function playAudio() {
-    //let id = row 
+
     for (row = 0; row < numberOfInstr; row++) {
         if (counter > -1) musicMachine[row][counter].classList.add("counterPos");
         
@@ -179,13 +190,13 @@ function playAudio() {
         } else {
             musicMachine[row][numberOfBeats - 1].classList.remove("counterPos");
         }
-        //beatsMatrix[row][counter]
+
         if (musicMachine[row][counter].classList.contains("isActiveButt")) { 
-            console.log('true');
             audio[row].currentTime = 0;
             audio[row].play();
          }
     }
+
     counter++;
     //loops through array
     if (counter === 8) {
@@ -194,7 +205,8 @@ function playAudio() {
 }
 
 function main(){
-    setUp();
+    setUpAudio();
+    setUpRecorder();
     //adds event listener to each element with className
     for (let r = 0; r < numberOfInstr; r++) {
         musicMachine[r].forEach(element => element.addEventListener("click", tabActive));
@@ -205,7 +217,12 @@ function main(){
     document.getElementById("stop").addEventListener("click", stop);
     document.getElementById("startrec").addEventListener("click", startRec);
     document.getElementById("stoprec").addEventListener("click", stopRec);
+    //document.getElementById("keepBut").addEventListener("click", download);
+
     document.getElementById("bpm").addEventListener("input", timeInterval);
 }
+
+
+
 
 main();
