@@ -1,9 +1,10 @@
 const musicMachine = [[],[],[],[]];
 const numberOfInstr = 4;
 let counter = 0;
+//let row = 0;
 let playing;
 const numberOfBeats = 8;
-const audio = [];
+let audio = [];
 let chunks = [];
 
 
@@ -17,7 +18,7 @@ try {
     throw new Error("Web Audio API not supported.");
 }
 
-  //Gets stream of data from the speaker output - gives the ability to store
+  //Gets stream of data from the nodes - gives the ability to store
   const dest = audioContext.createMediaStreamDestination();
 
   //new instance of MediaRecorder
@@ -33,16 +34,12 @@ function setUpAudio() {
         musicMachine[3].push(document.getElementById("3" + i))
     }
 
-    //get audio elements 
-    for (let j = 0; j < numberOfInstr; j++) {
-        audio.push(document.getElementById("audio" + j));
-    }
-
     //pass audio element to media context
-    const xylo = audioContext.createMediaElementSource(audio[0]);
-    const djembeOne = audioContext.createMediaElementSource(audio[1]);
-    const djembeTwo = audioContext.createMediaElementSource(audio[2]);
-    const maracas = audioContext.createMediaElementSource(audio[3]);
+    const xylo = audioContext.createMediaElementSource(document.getElementById("audio0"));
+    const djembeOne = audioContext.createMediaElementSource(document.getElementById("audio1"));
+    const djembeTwo = audioContext.createMediaElementSource(document.getElementById("audio2"));
+    const maracas = audioContext.createMediaElementSource(document.getElementById("audio3"));
+
 
     const gainNode = audioContext.createGain();
 
@@ -55,6 +52,15 @@ function setUpAudio() {
     djembeOne.connect(gainNode).connect(audioContext.destination);
     djembeTwo.connect(gainNode).connect(audioContext.destination);
     maracas.connect(gainNode).connect(audioContext.destination);
+
+    //audio = [xylo, djembeOne, djembeTwo, maracas]
+
+    audio = [document.getElementById("audio0"),
+            document.getElementById("audio1"),
+            document.getElementById("audio2"),
+            document.getElementById("audio3")
+        ]
+
 }
 
 function setUpRecorder() {
@@ -126,8 +132,7 @@ function start() {
         audioContext.resume();
         console.log("Playback resumed successfully");
     }
-    //scheduler();
-    playing = setInterval(playAudio, timeInterval());
+    playing = setInterval(scheduler, timeInterval());
     swapButtons("start", "pause");
 
 }
@@ -180,27 +185,34 @@ function tabActive() {
     musicMachine[row][col].classList.toggle("isActiveButt");
 }
 
-function playAudio() {
-
-    for (row = 0; row < numberOfInstr; row++) {
-        if (counter > -1) musicMachine[row][counter].classList.add("counterPos");
-        
-        if (counter > 0) {
-            musicMachine[row][counter - 1].classList.remove("counterPos");
-        } else {
-            musicMachine[row][numberOfBeats - 1].classList.remove("counterPos");
-        }
-
-        if (musicMachine[row][counter].classList.contains("isActiveButt")) { 
-            audio[row].currentTime = 0;
-            audio[row].play();
-         }
+function scheduler() {
+    for (let row = 0; row < numberOfInstr; row++) {
+        highlighter(row, counter);
+        playAudio(row, counter);
     }
 
     counter++;
-    //loops through array
-    if (counter === 8) {
+    if (counter === numberOfBeats) {
         counter = 0;
+    }
+}
+
+function highlighter(row, counter) {
+    if (counter > -1) {
+        musicMachine[row][counter].classList.add("counterPos");
+    }
+    if (counter > 0) {
+        musicMachine[row][counter - 1].classList.remove("counterPos");
+    } else {
+        musicMachine[row][numberOfBeats - 1].classList.remove("counterPos");
+    }
+}
+
+// //refractor seperate highlighter and play audio
+function playAudio(row, counter) {
+    if (musicMachine[row][counter].classList.contains("isActiveButt")) { 
+        audio[row].currentTime = 0;
+        audio[row].play();
     }
 }
 

@@ -18,6 +18,9 @@ const dest = audioContext.createMediaStreamDestination();
     audio.push(document.getElementById("audio" + j));
 }
 
+// audio.filter(numberOfInstrumentsBiggerThanJ)
+// const numberOfInstrumentsBiggerThanJ = (x) => x < numberOfInstr
+
 function playXylo() {
     const xylo = audioContext.createMediaElementSource(audio[0]);
     xylo.connext(dest).connect(audioContext.destination);
