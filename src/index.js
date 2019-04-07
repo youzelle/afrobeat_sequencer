@@ -20,23 +20,22 @@ try {
   //new instance of MediaRecorder
   const mediaRecorder = new MediaRecorder(dest.stream);
 
-//setUpMusiicMachine
+//setUpMusicMachine
 
 function musicMachine() {
-     //store DOM elements in JS array
-     let musicMachine = [[],[],[],[]];
-     for (let i = 0; i < 8; i++) {
-        musicMachine[0].push(document.getElementById("0" + i));
-        musicMachine[1].push(document.getElementById("1" + i));
-        musicMachine[2].push(document.getElementById("2" + i));
-        musicMachine[3].push(document.getElementById("3" + i))
+    let musicMachine = [];
+    let drums = Array.from(document.querySelectorAll(".drum"));
+
+    while(drums.length > 0) {
+        musicMachine.push(drums.splice(0,8));
     }
 
-    let drum = document.querySelectorAll('.drum');
-    Array.from(drum).forEach(element => element.addEventListener("click", drumHit));
+    musicMachine.forEach( ele => ele.forEach(element => element.addEventListener("click", drumHit)));
 
     return musicMachine;
 }
+
+//setUpWebAudio
 
 function setUpAudio() {
 
@@ -184,6 +183,9 @@ function clearDownload(event, url) {
 //MUSIC SEQUENCER
 function drumHit() {
     event.preventDefault();
+    console.log('drum hit added')
+
+    console.log('this', this)
     row = this.getAttribute("data-row");
     col = this.getAttribute("data-col");
     musicMachine()[row][col].classList.toggle("hit");
@@ -204,12 +206,13 @@ function scheduler() {
 function highlighter(row, counter) {
     if (counter > -1) {
         musicMachine()[row][counter].classList.add("counterPos");
-    }
+    };
+
     if (counter > 0) {
         musicMachine()[row][counter - 1].classList.remove("counterPos");
     } else {
         musicMachine()[row][7].classList.remove("counterPos");
-    }
+    };
 }
 
 // //refractor seperate highlighter and play audio
