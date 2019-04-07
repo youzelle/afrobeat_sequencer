@@ -1,9 +1,5 @@
-const musicMachine = [[],[],[],[]];
-const numberOfInstr = 4;
-let counter = 0;
-//let row = 0;
 let playing;
-const numberOfBeats = 8;
+let counter = 0;
 let audio = [];
 let chunks = [];
 
@@ -24,15 +20,25 @@ try {
   //new instance of MediaRecorder
   const mediaRecorder = new MediaRecorder(dest.stream);
 
-function setUpAudio() {
+//setUpMusiicMachine
 
-    //store DOM elements in JS array
-    for (let i = 0; i < numberOfBeats; i++) {
+function musicMachine() {
+     //store DOM elements in JS array
+     let musicMachine = [[],[],[],[]];
+     for (let i = 0; i < 8; i++) {
         musicMachine[0].push(document.getElementById("0" + i));
         musicMachine[1].push(document.getElementById("1" + i));
         musicMachine[2].push(document.getElementById("2" + i));
         musicMachine[3].push(document.getElementById("3" + i))
     }
+
+    let drum = document.querySelectorAll('.drum');
+    Array.from(drum).forEach(element => element.addEventListener("click", drumHit));
+
+    return musicMachine;
+}
+
+function setUpAudio() {
 
     //pass audio element to media context
     const xylo = audioContext.createMediaElementSource(document.getElementById("audio0"));
@@ -119,13 +125,11 @@ function toggleDisable(button) {
 
 //CONTROLS
 
-//sets time interval based on slider bpm value
 function timeInterval() {
     return Math.floor((60000)/(document.getElementById("bpm").value*2));
 }
 
-//autoplay policy puts audiocontext in suspended state before user interaction
-//need to call resume() to put in running state 
+//autoplay policy 
 function start() {
     event.preventDefault();
     if (audioContext.state === 'suspended') {
@@ -147,9 +151,9 @@ function stop() {
     //disable download
     event.preventDefault();
     counter = 0;
-    for (let r = 0; r < numberOfInstr; r++) {
-        musicMachine[r].forEach(element => {
-            element.classList.remove("counterPos", "isActiveButt");
+    for (let r = 0; r < 4; r++) {
+        musicMachine()[r].forEach(element => {
+            element.classList.remove("counterPos", "hit");
     })}
     clearInterval(playing);
     swapButtons("pause", "start");
@@ -178,58 +182,56 @@ function clearDownload(event, url) {
 }
  
 //MUSIC SEQUENCER
-function tabActive() {
+function drumHit() {
     event.preventDefault();
     row = this.getAttribute("data-row");
     col = this.getAttribute("data-col");
-    musicMachine[row][col].classList.toggle("isActiveButt");
+    musicMachine()[row][col].classList.toggle("hit");
 }
 
 function scheduler() {
-    for (let row = 0; row < numberOfInstr; row++) {
+    for (let row = 0; row < 4; row++) {
         highlighter(row, counter);
         playAudio(row, counter);
     }
 
     counter++;
-    if (counter === numberOfBeats) {
+    if (counter === 8) {
         counter = 0;
     }
 }
 
 function highlighter(row, counter) {
     if (counter > -1) {
-        musicMachine[row][counter].classList.add("counterPos");
+        musicMachine()[row][counter].classList.add("counterPos");
     }
     if (counter > 0) {
-        musicMachine[row][counter - 1].classList.remove("counterPos");
+        musicMachine()[row][counter - 1].classList.remove("counterPos");
     } else {
-        musicMachine[row][numberOfBeats - 1].classList.remove("counterPos");
+        musicMachine()[row][7].classList.remove("counterPos");
     }
 }
 
 // //refractor seperate highlighter and play audio
 function playAudio(row, counter) {
-    if (musicMachine[row][counter].classList.contains("isActiveButt")) { 
+    if (musicMachine()[row][counter].classList.contains("hit")) { 
         audio[row].currentTime = 0;
         audio[row].play();
     }
 }
 
 function main(){
+    musicMachine();
     setUpAudio();
     setUpRecorder();
     //adds event listener to each element with className
-    for (let r = 0; r < numberOfInstr; r++) {
-        musicMachine[r].forEach(element => element.addEventListener("click", tabActive));
-    }
+  
     //Event LISTENERS
     document.getElementById("start").addEventListener("click", start);
     document.getElementById("pause").addEventListener("click", pause);
     document.getElementById("stop").addEventListener("click", stop);
     document.getElementById("startrec").addEventListener("click", startRec);
     document.getElementById("stoprec").addEventListener("click", stopRec);
-    //document.getElementById("keepBut").addEventListener("click", download);
 
     document.getElementById("bpm").addEventListener("input", timeInterval);
 }
