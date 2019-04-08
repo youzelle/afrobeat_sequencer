@@ -1,6 +1,5 @@
 let playing;
 let counter = 0;
-let audio = [];
 let chunks = [];
 
 
@@ -20,8 +19,6 @@ try {
   //new instance of MediaRecorder
   const mediaRecorder = new MediaRecorder(dest.stream);
 
-//setUpMusicMachine
-
 function musicMachine() {
     let musicMachine = [];
     let drums = Array.from(document.querySelectorAll(".drum"));
@@ -35,38 +32,36 @@ function musicMachine() {
     return musicMachine;
 }
 
-//setUpWebAudio
-
-function setUpAudio() {
-
-    //pass audio element to media context
-    const xylo = audioContext.createMediaElementSource(document.getElementById("audio0"));
-    const djembeOne = audioContext.createMediaElementSource(document.getElementById("audio1"));
-    const djembeTwo = audioContext.createMediaElementSource(document.getElementById("audio2"));
-    const maracas = audioContext.createMediaElementSource(document.getElementById("audio3"));
-
-
-    const gainNode = audioContext.createGain();
-
-    gainNode.gain.value = 1;
-
-    //connects sound producing part of node
-    gainNode.connect(dest);
-
-    xylo.connect(gainNode).connect(audioContext.destination);
-    djembeOne.connect(gainNode).connect(audioContext.destination);
-    djembeTwo.connect(gainNode).connect(audioContext.destination);
-    maracas.connect(gainNode).connect(audioContext.destination);
-
-    //audio = [xylo, djembeOne, djembeTwo, maracas]
-
-    audio = [document.getElementById("audio0"),
-            document.getElementById("audio1"),
-            document.getElementById("audio2"),
-            document.getElementById("audio3")
-        ]
-
+function audio() {
+    let audio = [];
+    for (let i = 0; i < 4; i++) {
+        audio.push(document.getElementById("audio" + i));
+    }
+    return audio;
 }
+
+// function setUpAudio() {
+
+//     //pass audio element to media context
+//     const xylo = audioContext.createMediaElementSource(document.getElementById("audio0"));
+//     const djembeOne = audioContext.createMediaElementSource(document.getElementById("audio1"));
+//     const djembeTwo = audioContext.createMediaElementSource(document.getElementById("audio2"));
+//     const maracas = audioContext.createMediaElementSource(document.getElementById("audio3"));
+
+
+//     const gainNode = audioContext.createGain();
+
+//     gainNode.gain.value = 1;
+
+//     //connects sound producing part of node
+//     gainNode.connect(dest);
+
+//     xylo.connect(gainNode).connect(audioContext.destination);
+//     djembeOne.connect(gainNode).connect(audioContext.destination);
+//     djembeTwo.connect(gainNode).connect(audioContext.destination);
+//     maracas.connect(gainNode).connect(audioContext.destination);
+
+// }
 
 function setUpRecorder() {
     //when data is available an event is raised, this listens for it    
@@ -218,14 +213,14 @@ function highlighter(row, counter) {
 // //refractor seperate highlighter and play audio
 function playAudio(row, counter) {
     if (musicMachine()[row][counter].classList.contains("hit")) { 
-        audio[row].currentTime = 0;
-        audio[row].play();
+        audio()[row].currentTime = 0;
+        audio()[row].play();
     }
 }
 
 function main(){
     musicMachine();
-    setUpAudio();
+    audio();
     setUpRecorder();
     //adds event listener to each element with className
   
