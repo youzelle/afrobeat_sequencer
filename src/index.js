@@ -1,6 +1,6 @@
 let playing;
 let counter = 0;
-let chunks = [];
+//let chunks = [];
 
 
 try {
@@ -14,10 +14,8 @@ try {
 }
 
   //Gets stream of data from the nodes - gives the ability to store
-  const dest = audioContext.createMediaStreamDestination();
-
   //new instance of MediaRecorder
-  const mediaRecorder = new MediaRecorder(dest.stream);
+  //const mediaRecorder = new MediaRecorder(dest.stream);
 
 function musicMachine() {
     let musicMachine = [];
@@ -38,6 +36,13 @@ function audio() {
         audio.push(document.getElementById("audio" + i));
     }
     return audio;
+}
+
+function mediaRecorder() {
+    // const dest = audioContext.createMediaStreamDestination();
+    // return new MediaRecorder(dest.stream);
+    const mediarecorder = new MediaRecorder(stream);
+    return mediarecorder;
 }
 
 // function setUpAudio() {
@@ -64,14 +69,16 @@ function audio() {
 // }
 
 function setUpRecorder() {
-    //when data is available an event is raised, this listens for it    
-    mediaRecorder.ondataavailable = handleChunks;
+    //when data is available an event is raised, this listens for it 
+    let chunks = [];
 
-    mediaRecorder.onstop = downloadChunks;
+    mediaRecorder().ondataavailable = handleChunks;
+
+    mediaRecorder().onstop = downloadChunks;
 
 }
 
-function handleChunks(event) {
+function handleChunks(event, chunks) {
     try {
         chunks.push(event.data);
     } catch (error) {
@@ -79,9 +86,7 @@ function handleChunks(event) {
     }
 }
 
-function downloadChunks(event) {
-    // Make blob out of our blobs, and open it.
-    //make sure down but is enabled
+function downloadChunks(event, chunks) {
     const blob = new Blob(chunks, { "type" : "audio/webm;codecs=opus" });    
     const url = URL.createObjectURL(blob);
 
@@ -93,10 +98,9 @@ function downloadChunks(event) {
            window.URL.revokeObjectURL(url);
            //diasble download
        },
-       2000)
+       5000)
    });
 
-    chunks = [];
 } 
 
 //BUTTON HELPERS
@@ -156,15 +160,15 @@ function stop() {
 //only want to start recording if play button is active
 function startRec() {
     event.preventDefault();
-    mediaRecorder.start();
+    mediaRecorder().start();
     swapButtons("startrec", "stoprec");
     console.log("recorder started");
 };
 
 function stopRec() {
     event.preventDefault();
-    mediaRecorder.requestData();
-    mediaRecorder.stop();
+    mediaRecorder().requestData();
+    mediaRecorder().stop();
     swapButtons("stoprec", "startrec");
     console.log("recorder stopped");
 };
@@ -222,9 +226,7 @@ function main(){
     musicMachine();
     audio();
     setUpRecorder();
-    //adds event listener to each element with className
   
-    //Event LISTENERS
     document.getElementById("start").addEventListener("click", start);
     document.getElementById("pause").addEventListener("click", pause);
     document.getElementById("stop").addEventListener("click", stop);
